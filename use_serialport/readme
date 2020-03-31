@@ -1,0 +1,27 @@
+# win7
+# HaskellPlatform-8.6.5-core-x86_64-setup.exe
+# installed -> C:\Haskell\8.6.5
+# note: there is alternative for ghc -> ghc-8.8.2-x86_64-unknown-mingw32.tar
+# note: there is alternative for cabal -> ghc-8.8.2-x86_64-unknown-mingw32.tar
+
+# installed libraries are located -> C:\Haskell\8.6.5\lib\package.conf.d
+ 
+cabal update
+cabal install serialport
+
+# installs the libraries here -> C:\Users\vorname.name\AppData\Roaming\cabal\store\ghc-8.6.5\package.db
+# this database location must be published in win7 under environment variables
+GHC_PACKAGE_PATH = "C:\Haskell\8.6.5\lib\package.conf.d";"C:\Users\vorname.name\AppData\Roaming\cabal\store\ghc-8.6.5\package.db"
+# note the usage of "path1";"path2"
+# to test the environment variable open up a new terminal (so the variables are updated) and run
+$ echo $GHC_PACKAGE_PATH
+"C:\Haskell\8.6.5\lib\package.conf.d";"C:\Users\vorname.name\AppData\Roaming\cabal\store\ghc-8.6.5\package.db"
+
+# to use the libraries from ghci use
+Prelude> :set -package serialport
+
+# to compile from terminal run
+ghc main.hs
+
+
+
